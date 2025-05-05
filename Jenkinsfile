@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3' // Set this in Jenkins Global Tool Config
+        maven 'Maven 3'
     }
     stages {
         stage('Checkout') {
@@ -9,13 +9,11 @@ pipeline {
                 git 'https://github.com/cnabi/simple-java-maven-app.git'
             }
         }
-
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean package'
             }
         }
-
         stage('Test') {
             steps {
                 sh 'mvn test'
